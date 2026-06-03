@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Kavin Parithi Sivasamy | Data Engineer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:#fff;color:#0f172a;overflow-x:hidden;}
+
+  /* cursor glow */
+  #glow{position:fixed;width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(59,130,246,.05),transparent 70%);
+    pointer-events:none;transform:translate(-50%,-50%);z-index:0;
+    transition:left .12s ease,top .12s ease;}
+
+  /* gradient text */
+  .gt{background:linear-gradient(135deg,#1e40af,#3b82f6,#06b6d4);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .gt-warm{background:linear-gradient(135deg,#1e40af,#7c3aed);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+  /* hero grid */
+  .hero-grid{background-image:linear-gradient(rgba(59,130,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.04) 1px,transparent 1px);background-size:52px 52px;}
+
+  /* spinning ring */
+  .ring-wrap{position:relative;display:inline-block;}
+  .ring-wrap::before{content:'';position:absolute;inset:-5px;border-radius:50%;
+    background:conic-gradient(#3b82f6,#06b6d4,#8b5cf6,#3b82f6);
+    animation:spin 5s linear infinite;z-index:0;}
+  .ring-wrap::after{content:'';position:absolute;inset:-2px;border-radius:50%;
+    background:#fff;z-index:1;}
+  .ring-wrap img{position:relative;z-index:2;display:block;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* float animations */
+  @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  .float{animation:floatY 5s ease-in-out infinite;}
+  .float2{animation:floatY 7s ease-in-out infinite;animation-delay:1.5s;}
+  .float3{animation:floatY 6s ease-in-out infinite;animation-delay:3s;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* nav link */
+  .nl{position:relative;font-size:14px;font-weight:500;color:#475569;text-decoration:none;
+    padding:4px 0;transition:color .2s;}
+  .nl::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;
+    background:#3b82f6;border-radius:1px;transform:scaleX(0);transform-origin:left;transition:.2s;}
+  .nl:hover{color:#1d4ed8;}.nl:hover::after{transform:scaleX(1);}
+  .nl.active{color:#1d4ed8;}.nl.active::after{transform:scaleX(1);}
+
+  /* badge */
+  .badge{display:inline-flex;align-items:center;gap:6px;
+    background:#eff6ff;color:#1d4ed8;font-size:11px;font-weight:800;
+    letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;}
+
+  /* skill pill */
+  .pill{display:inline-flex;align-items:center;gap:5px;
+    background:#f8fafc;border:1px solid #e2e8f0;color:#1e293b;
+    font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:30px;
+    transition:all .2s;white-space:nowrap;}
+  .pill:hover{background:#eff6ff;border-color:#3b82f6;color:#1d4ed8;
+    transform:translateY(-2px);box-shadow:0 4px 12px rgba(59,130,246,.12);}
+
+  /* exp card */
+  .exp{background:#fff;border:1px solid #e2e8f0;border-radius:22px;
+    padding:38px 42px;transition:all .3s;position:relative;overflow:hidden;}
+  .exp::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(180deg,#3b82f6,#06b6d4);border-radius:4px 0 0 4px;}
+  .exp:hover{border-color:rgba(59,130,246,.3);box-shadow:0 14px 44px rgba(59,130,246,.08);transform:translateY(-3px);}
+
+  /* skill category card */
+  .skcard{background:#fff;border:1px solid #e2e8f0;border-radius:20px;
+    padding:28px 26px;transition:all .3s;}
+  .skcard:hover{box-shadow:0 12px 36px rgba(0,0,0,.06);transform:translateY(-4px);}
+
+  /* stat */
+  .stat{background:linear-gradient(135deg,#f8fafc,#eff6ff);border:1px solid #e2e8f0;
+    border-radius:18px;padding:24px 20px;text-align:center;transition:all .3s;}
+  .stat:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(59,130,246,.1);}
+
+  /* cert */
+  .cert{background:linear-gradient(135deg,#fffbeb,#fef9c3);border:1.5px solid #fcd34d;
+    border-radius:18px;padding:28px 32px;display:flex;align-items:center;gap:18px;transition:all .3s;}
+  .cert:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(251,191,36,.2);}
+
+  /* contact btn */
+  .cbtn{display:inline-flex;align-items:center;gap:8px;background:#1e40af;color:#fff;
+    font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;
+    text-decoration:none;transition:all .3s;}
+  .cbtn:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 8px 24px rgba(29,78,216,.3);}
+  .obtn{display:inline-flex;align-items:center;gap:8px;
+    border:2px solid #e2e8f0;color:#475569;font-weight:600;font-size:14px;
+    padding:12px 26px;border-radius:14px;text-decoration:none;transition:all .3s;}
+  .obtn:hover{border-color:#3b82f6;color:#1d4ed8;}
+
+  /* marquee */
+  .mwrap{overflow:hidden;mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
+  .mtrack{display:flex;gap:10px;width:max-content;animation:mscroll 30s linear infinite;}
+  .mtrack:hover{animation-play-state:paused;}
+  @keyframes mscroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* industry tag */
+  .itag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;}
+
+  /* timeline bullet */
+  .tbullet{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px;
+    background:linear-gradient(135deg,#3b82f6,#06b6d4);
+    box-shadow:0 0 0 3px rgba(59,130,246,.15);}
+
+  /* detail row */
+  .drow{display:flex;align-items:flex-start;gap:10px;background:#f8fafc;
+    border:1px solid #e2e8f0;border-radius:12px;padding:12px 14px;
+    font-size:13px;color:#475569;line-height:1.6;}
+
+  /* quote */
+  .qline{border-left:3px solid #3b82f6;padding:4px 0 4px 18px;
+    font-style:italic;color:#64748b;font-size:15px;line-height:1.75;}
+
+  /* underline anim */
+  .uanim{position:relative;display:inline-block;}
+  .uanim::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:2px;
+    transform:scaleX(0);transform-origin:left;animation:uin .9s .5s ease forwards;}
+  @keyframes uin{to{transform:scaleX(1);}}
+
+  /* scroll indicator */
+  @keyframes sb{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
+  .scrl{animation:sb 2s ease-in-out infinite;}
+
+  /* section alternating */
+  .bg-alt{background:#f8faff;}
+
+  /* about info card */
+  .infocard{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:22px 24px;
+    box-shadow:0 2px 12px rgba(0,0,0,.04);transition:box-shadow .3s;}
+  .infocard:hover{box-shadow:0 8px 28px rgba(59,130,246,.08);}
+</style>
+</head>
+<body>
+
+<div id="glow"></div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+    <a href="#home" class="font-black text-xl tracking-tight gt">KP</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about"    class="nl">About</a>
+      <a href="#experience" class="nl">Experience</a>
+      <a href="#skills"   class="nl">Skills</a>
+      <a href="#certifications" class="nl">Certifications</a>
+      <a href="#contact"  class="nl">Contact</a>
+    </div>
+    <a href="mailto:kavinandhiswork@gmail.com" class="cbtn" style="padding:10px 20px;font-size:13px;border-radius:10px;">Hire Me</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero-grid min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden" id="home">
+
+  <!-- floating decorations -->
+  <div class="float hidden lg:flex absolute top-28 right-16 w-14 h-14 bg-blue-50 rounded-2xl items-center justify-center text-xl border border-blue-100">⚡</div>
+  <div class="float2 hidden lg:flex absolute bottom-36 left-16 w-12 h-12 bg-cyan-50 rounded-xl items-center justify-center text-lg border border-cyan-100">🔥</div>
+  <div class="float3 hidden lg:flex absolute top-44 left-28 w-11 h-11 bg-violet-50 rounded-xl items-center justify-center text-base border border-violet-100">🧩</div>
+  <div class="float hidden lg:flex absolute bottom-28 right-28 w-10 h-10 bg-emerald-50 rounded-xl items-center justify-center text-base border border-emerald-100" style="animation-delay:4s">🗄️</div>
+
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 w-full">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <!-- LEFT TEXT -->
+      <div>
+        <!-- status badge -->
+        <div class="inline-flex items-center gap-2 border border-blue-200 bg-blue-50 text-blue-700 text-xs font-700 font-semibold px-4 py-2 rounded-full mb-7">
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          Available for Data Engineering Roles
+        </div>
+
+        <h1 class="text-5xl lg:text-6xl font-black leading-[1.08] tracking-tight mb-2">
+          <span class="uanim text-slate-900">Kavin Parithi</span>
+        </h1>
+        <h1 class="text-5xl lg:text-6xl font-black leading-[1.08] tracking-tight mb-6">
+          <span class="gt">Sivasamy</span>
+        </h1>
+
+        <p class="text-xl font-bold text-slate-700 mb-1">Data Engineer</p>
+        <p class="text-slate-500 text-sm font-medium mb-8">Databricks Certified &nbsp;·&nbsp; Azure &nbsp;·&nbsp; Greater Chennai Area</p>
+
+        <div class="qline mb-9 max-w-md">
+          Most data pipelines fail not because of bad code, but because they were designed for yesterday's data volume.
+        </div>
+
+        <!-- tech pills -->
+        <div class="flex flex-wrap gap-2 mb-10">
+          <span class="pill">🔷 Databricks</span>
+          <span class="pill">⚡ Apache Spark</span>
+          <span class="pill">🌊 Delta Lake</span>
+          <span class="pill">☁️ Azure</span>
+          <span class="pill">🐍 PySpark</span>
+          <span class="pill">🏗️ Medallion</span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4">
+          <a href="#experience" class="cbtn">
+            View My Work
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:kavinandhiswork@gmail.com" class="obtn">Get in Touch</a>
+        </div>
+      </div>
+
+      <!-- RIGHT PHOTO + STATS -->
+      <div class="flex flex-col items-center gap-8">
+        <div class="ring-wrap w-52 h-52 lg:w-60 lg:h-60 rounded-full">
+          <img src="assets/images/kavin.png" alt="Kavin Parithi Sivasamy"
+               class="w-full h-full object-cover rounded-full"/>
+        </div>
+
+        <!-- stats row -->
+        <div class="grid grid-cols-3 gap-4 w-full max-w-xs">
+          <div class="stat">
+            <div class="text-3xl font-black text-blue-600 counter" data-target="3">0</div>
+            <div class="text-xs text-slate-500 font-semibold mt-1">Years Exp</div>
+          </div>
+          <div class="stat">
+            <div class="text-3xl font-black text-cyan-600 counter" data-target="3">0</div>
+            <div class="text-xs text-slate-500 font-semibold mt-1">Industries</div>
+          </div>
+          <div class="stat">
+            <div class="text-3xl font-black text-violet-600 counter" data-target="1">0</div>
+            <div class="text-xs text-slate-500 font-semibold mt-1">Pro Cert</div>
+          </div>
+        </div>
+
+        <!-- code snippet decoration -->
+        <div class="w-full max-w-xs bg-slate-900 rounded-xl p-4 text-left hidden lg:block">
+          <div class="flex gap-1.5 mb-3"><div class="w-2.5 h-2.5 rounded-full bg-red-400"></div><div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div><div class="w-2.5 h-2.5 rounded-full bg-green-400"></div></div>
+          <div style="font-family:'Fira Code',monospace;font-size:11px;line-height:1.9;">
+            <span style="color:#6a737d"># Design first, code second</span><br/>
+            <span style="color:#79c0ff">spark</span><span style="color:#c9d1d9">.</span><span style="color:#d2a8ff">conf</span><span style="color:#c9d1d9">.set(</span><br/>
+            <span style="color:#a8ff78">&nbsp;&nbsp;"spark.sql.adaptive</span><br/>
+            <span style="color:#a8ff78">&nbsp;&nbsp;&nbsp;.enabled"</span><span style="color:#c9d1d9">,</span><span style="color:#ffa657"> True</span><br/>
+            <span style="color:#c9d1d9">)</span><br/>
+            <span style="color:#6a737d"># Build for tomorrow</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- scroll hint -->
+  <div class="scrl absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-300">
+    <span class="text-xs font-semibold tracking-widest uppercase">Scroll</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="border-y border-slate-100 bg-slate-50/80 py-5">
+  <div class="mwrap">
+    <div class="mtrack">
+      <span class="pill">Databricks</span><span class="pill">Delta Lake</span><span class="pill">Apache Spark</span><span class="pill">PySpark</span><span class="pill">Azure</span><span class="pill">Delta Live Tables</span><span class="pill">Medallion Architecture</span><span class="pill">ETL / ELT</span><span class="pill">Structured Streaming</span><span class="pill">Spark SQL</span><span class="pill">Data Quality</span><span class="pill">Pipeline Observability</span><span class="pill">SQL</span><span class="pill">DABs</span><span class="pill">Firestore</span><span class="pill">Elastic Search</span><span class="pill">SAP ECC</span><span class="pill">Datasphere</span>
+      <span class="pill">Databricks</span><span class="pill">Delta Lake</span><span class="pill">Apache Spark</span><span class="pill">PySpark</span><span class="pill">Azure</span><span class="pill">Delta Live Tables</span><span class="pill">Medallion Architecture</span><span class="pill">ETL / ELT</span><span class="pill">Structured Streaming</span><span class="pill">Spark SQL</span><span class="pill">Data Quality</span><span class="pill">Pipeline Observability</span><span class="pill">SQL</span><span class="pill">DABs</span><span class="pill">Firestore</span><span class="pill">Elastic Search</span><span class="pill">SAP ECC</span><span class="pill">Datasphere</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="py-24 px-6 lg:px-8" id="about">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <div class="reveal">
+        <div class="badge mb-5">About</div>
+        <h2 class="text-4xl lg:text-5xl font-black text-slate-900 leading-tight mb-6">
+          I architect data systems that outlive <span class="gt">requirements.</span>
+        </h2>
+        <p class="text-slate-600 text-base leading-relaxed mb-5">
+          As a Data Engineer at zeb, I build end-to-end Lakehouse architectures on Databricks and Azure, taking raw data from ingestion all the way to analytics-ready Gold layers with an unwavering focus on reliability, performance, and maintainability.
+        </p>
+        <p class="text-slate-600 text-base leading-relaxed mb-7">
+          I approach every data engineering problem architecturally first and technically second. The right design eliminates entire categories of downstream problems before the first line of code is written.
+        </p>
+        <div class="bg-blue-50 border border-blue-100 rounded-2xl px-6 py-5">
+          <p class="text-blue-800 font-bold text-sm mb-1">Design. Develop. Debug.</p>
+          <p class="text-blue-600 text-sm leading-relaxed">Growth is not about knowing everything. It is about staying curious enough to keep learning.</p>
+        </div>
+      </div>
+
+      <div class="reveal space-y-5" style="transition-delay:.12s">
+        <div class="infocard">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-lg">🔧</div>
+            <span class="font-bold text-slate-800 text-base">What I work with</span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-blue-400 flex-shrink-0 mt-0.5">→</span>Databricks | Azure Databricks | Delta Lake | Delta Live Tables</div>
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-blue-400 flex-shrink-0 mt-0.5">→</span>Apache Spark | PySpark | Structured Streaming | Spark SQL</div>
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-blue-400 flex-shrink-0 mt-0.5">→</span>Medallion Architecture | ETL/ELT | Data Pipeline Engineering</div>
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-blue-400 flex-shrink-0 mt-0.5">→</span>Data Quality | Observability | Pipeline Automations</div>
+          </div>
+        </div>
+        <div class="infocard">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-cyan-50 rounded-xl flex items-center justify-center text-lg">⚡</div>
+            <span class="font-bold text-slate-800 text-base">What I do</span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-cyan-400 flex-shrink-0 mt-0.5">→</span>Design and build Medallion Lakehouse platforms from scratch</div>
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-cyan-400 flex-shrink-0 mt-0.5">→</span>Develop production-grade DLT pipelines</div>
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-cyan-400 flex-shrink-0 mt-0.5">→</span>Optimize Spark workloads for scale and performance</div>
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-cyan-400 flex-shrink-0 mt-0.5">→</span>Build reliable ingestion and transformation frameworks</div>
+            <div class="flex items-start gap-2 text-sm text-slate-600"><span class="text-cyan-400 flex-shrink-0 mt-0.5">→</span>Implement data quality and observability practices</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<section class="py-24 px-6 lg:px-8 bg-alt" id="experience">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <div class="badge mx-auto mb-4" style="width:fit-content;">Experience</div>
+      <h2 class="text-4xl lg:text-5xl font-black text-slate-900 leading-tight">
+        Where I Made <span class="gt">Data Work</span>
+      </h2>
+      <p class="text-slate-500 mt-3 text-base max-w-lg mx-auto">Three industries. Real pipelines. Production-grade outcomes.</p>
+    </div>
+
+    <div class="space-y-10">
+
+      <!-- zeb header -->
+      <div class="exp reveal">
+        <div class="flex flex-wrap items-center gap-4 mb-8">
+          <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-black text-xl">Z</div>
+          <div>
+            <h3 class="text-2xl font-black text-slate-900">Data Engineer</h3>
+            <p class="text-blue-600 font-semibold text-sm mt-0.5">zeb &nbsp;·&nbsp; Greater Chennai Area</p>
+          </div>
+          <span class="ml-auto text-xs bg-green-50 text-green-700 font-bold px-3 py-1.5 rounded-full border border-green-200">Current</span>
+        </div>
+
+        <!-- FINANCE -->
+        <div class="mb-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <div class="w-9 h-9 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-center">🏦</div>
+            <span class="font-bold text-slate-800 text-base">Finance Sector</span>
+            <span class="itag bg-emerald-50 text-emerald-700 border border-emerald-200">Legacy Migration</span>
+          </div>
+          <div class="pl-12">
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Led a complete legacy modernization for a finance company, migrating their entire data stack from SSIS, SSRS, SSMS, JAMS, and PowerShell scripts into a single unified Databricks environment. Delivered every business value accurately with zero data loss and zero compromise on correctness.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="pill text-xs py-1">SSIS Migration</span>
+              <span class="pill text-xs py-1">Databricks</span>
+              <span class="pill text-xs py-1">Legacy Modernization</span>
+              <span class="pill text-xs py-1">SSRS</span>
+              <span class="pill text-xs py-1">PowerShell</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-100 my-6"></div>
+
+        <!-- INSURANCE -->
+        <div class="mb-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <div class="w-9 h-9 bg-violet-50 border border-violet-200 rounded-xl flex items-center justify-center">🛡️</div>
+            <span class="font-bold text-slate-800 text-base">Insurance Agent Management Industry</span>
+            <span class="itag bg-violet-50 text-violet-700 border border-violet-200">Unstructured Data</span>
+          </div>
+          <div class="pl-12">
+            <p class="text-slate-600 text-sm leading-relaxed mb-3">
+              Built Databricks pipelines to parse raw unstructured JSON data from Firestore and Elastic Search databases. Source data included agent calls, campaigns, daily messages, medical records, insurance plan mappings, and agent-to-client relationships from multiple product applications.
+            </p>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Transformed raw backend data into structured analytics tables that enabled the business to identify top-performing agents and their most effective products. The resulting insights directly contributed to increased agent and user subscription growth.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="pill text-xs py-1">Firestore</span>
+              <span class="pill text-xs py-1">Elastic Search</span>
+              <span class="pill text-xs py-1">Unstructured JSON</span>
+              <span class="pill text-xs py-1">Databricks</span>
+              <span class="pill text-xs py-1">Business Analytics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-100 my-6"></div>
+
+        <!-- CHEMICAL -->
+        <div>
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <div class="w-9 h-9 bg-orange-50 border border-orange-200 rounded-xl flex items-center justify-center">🧪</div>
+            <span class="font-bold text-slate-800 text-base">Chemical Manufacturing (Enterprise)</span>
+            <span class="itag bg-orange-50 text-orange-700 border border-orange-200">SAP + Lakehouse</span>
+          </div>
+          <div class="pl-12">
+            <p class="text-slate-600 text-sm leading-relaxed mb-5">
+              Architected a full enterprise Lakehouse for a chemical manufacturing company, ingesting data from SAP ECC through Datasphere into Databricks Volumes. Domains covered: procurement, raw materials, plant operations, delivery, SPEND, AP, CP, daily orders, supply chain, legal compliance, and chemical details. Built Gold and Platinum transformation layers for cross-functional analytics teams.
+            </p>
+            <div class="grid md:grid-cols-2 gap-3 mb-5">
+              <div class="drow"><div class="tbullet"></div>DLT pipelines for real-time orders, deliveries, and plant stock across both manufacturing and customer end</div>
+              <div class="drow"><div class="tbullet"></div>Customer chemical usage tracking to predict and pre-schedule next supply delivery</div>
+              <div class="drow"><div class="tbullet"></div>SQL Alerts for row-level failure detection even when pipeline status shows success</div>
+              <div class="drow"><div class="tbullet"></div>Dedicated Data Quality pipeline to validate freshness and correctness beyond pipeline status</div>
+              <div class="drow"><div class="tbullet"></div>Multi-environment deployments using Databricks Asset Bundles (DABs)</div>
+              <div class="drow"><div class="tbullet"></div>Established full data trust, enabling the client to confidently grow on the back of reliable insights</div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="pill text-xs py-1">SAP ECC</span>
+              <span class="pill text-xs py-1">Datasphere</span>
+              <span class="pill text-xs py-1">DLT</span>
+              <span class="pill text-xs py-1">Gold + Platinum Layers</span>
+              <span class="pill text-xs py-1">SQL Alerts</span>
+              <span class="pill text-xs py-1">DABs</span>
+              <span class="pill text-xs py-1">Data Quality</span>
+              <span class="pill text-xs py-1">Medallion Architecture</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SKILLS ═══════════ -->
+<section class="py-24 px-6 lg:px-8" id="skills">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <div class="badge mx-auto mb-4" style="width:fit-content;">Skills</div>
+      <h2 class="text-4xl lg:text-5xl font-black text-slate-900 leading-tight">
+        The Stack Behind <span class="gt">the Architecture</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="skcard reveal">
+        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl mb-5">🔷</div>
+        <h4 class="font-black text-slate-900 mb-3 text-base">Databricks Ecosystem</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill text-xs">Databricks</span><span class="pill text-xs">Azure Databricks</span><span class="pill text-xs">Delta Lake</span><span class="pill text-xs">DLT</span><span class="pill text-xs">DABs</span><span class="pill text-xs">SQL Warehouses</span>
+        </div>
+      </div>
+
+      <div class="skcard reveal" style="transition-delay:.08s">
+        <div class="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center text-2xl mb-5">⚡</div>
+        <h4 class="font-black text-slate-900 mb-3 text-base">Apache Spark</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill text-xs">PySpark</span><span class="pill text-xs">Spark SQL</span><span class="pill text-xs">Structured Streaming</span><span class="pill text-xs">Spark Optimization</span><span class="pill text-xs">AQE</span>
+        </div>
+      </div>
+
+      <div class="skcard reveal" style="transition-delay:.16s">
+        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-2xl mb-5">🏗️</div>
+        <h4 class="font-black text-slate-900 mb-3 text-base">Architecture Patterns</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill text-xs">Medallion Architecture</span><span class="pill text-xs">ETL / ELT</span><span class="pill text-xs">Lakehouse Design</span><span class="pill text-xs">Gold / Platinum Layers</span>
+        </div>
+      </div>
+
+      <div class="skcard reveal" style="transition-delay:.06s">
+        <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-2xl mb-5">🔍</div>
+        <h4 class="font-black text-slate-900 mb-3 text-base">Data Quality and Observability</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill text-xs">DQ Pipelines</span><span class="pill text-xs">DLT Expectations</span><span class="pill text-xs">SQL Alerts</span><span class="pill text-xs">Row-level Checks</span><span class="pill text-xs">Observability</span>
+        </div>
+      </div>
+
+      <div class="skcard reveal" style="transition-delay:.14s">
+        <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-2xl mb-5">☁️</div>
+        <h4 class="font-black text-slate-900 mb-3 text-base">Cloud and Integrations</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill text-xs">Azure</span><span class="pill text-xs">Datasphere</span><span class="pill text-xs">SAP ECC</span><span class="pill text-xs">Firestore</span><span class="pill text-xs">Elastic Search</span>
+        </div>
+      </div>
+
+      <div class="skcard reveal" style="transition-delay:.22s">
+        <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-2xl mb-5">🗄️</div>
+        <h4 class="font-black text-slate-900 mb-3 text-base">Databases and Languages</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill text-xs">SQL</span><span class="pill text-xs">Python</span><span class="pill text-xs">SSIS</span><span class="pill text-xs">SSRS</span><span class="pill text-xs">SSMS</span><span class="pill text-xs">PowerShell</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CERTIFICATIONS ═══════════ -->
+<section class="py-24 px-6 lg:px-8 bg-alt" id="certifications">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="badge mx-auto mb-4" style="width:fit-content;">Certifications</div>
+      <h2 class="text-4xl lg:text-5xl font-black text-slate-900">Certified at the <span class="gt">Top Level</span></h2>
+    </div>
+    <div class="max-w-2xl mx-auto space-y-6">
+      <div class="cert reveal">
+        <div class="w-16 h-16 bg-amber-100 border-2 border-amber-300 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">🏆</div>
+        <div>
+          <div class="font-black text-slate-900 text-lg">Databricks Certified Data Engineer Professional</div>
+          <p class="text-slate-500 text-sm mt-1">Databricks &nbsp;·&nbsp; Professional Level</p>
+          <div class="flex items-center gap-2 mt-3">
+            <span class="w-2 h-2 bg-amber-400 rounded-full"></span>
+            <span class="text-xs text-amber-700 font-bold">Highest Tier — Production Engineering Validated</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal bg-white border border-slate-100 rounded-2xl p-6 text-center">
+        <p class="text-sm text-slate-500 leading-relaxed">
+          The Databricks Data Engineer Professional certification validates expertise in production-grade Delta Lake patterns, DLT pipeline design, Spark workload optimization, and enterprise Lakehouse architecture at scale.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section class="py-20 px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <div class="badge mx-auto mb-4" style="width:fit-content;">Education</div>
+      <h2 class="text-3xl lg:text-4xl font-black text-slate-900">Where It <span class="gt">All Began</span></h2>
+    </div>
+    <div class="max-w-xl mx-auto reveal">
+      <div class="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex gap-5 items-start">
+        <div class="w-14 h-14 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0">🎓</div>
+        <div>
+          <h3 class="font-black text-slate-900 text-lg">Bannari Amman Institute of Technology</h3>
+          <p class="text-blue-600 font-semibold text-sm mt-1">Engineering</p>
+          <p class="text-slate-400 text-xs mt-2">Sathyamangalam, Tamil Nadu</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BEYOND ENGINEERING ═══════════ -->
+<section class="py-20 px-6 lg:px-8 bg-alt">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <div class="badge mx-auto mb-4" style="width:fit-content;">Beyond Engineering</div>
+      <h2 class="text-3xl lg:text-4xl font-black text-slate-900">The Human Behind <span class="gt">the Pipeline</span></h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="reveal bg-white border border-slate-100 rounded-2xl p-6 text-center hover:shadow-md transition-all">
+        <div class="text-3xl mb-3">🎤</div>
+        <h4 class="font-bold text-slate-800 text-sm mb-2">Speaking</h4>
+        <p class="text-slate-500 text-xs leading-relaxed">Sharing learnings on Databricks, Spark optimization, and production engineering challenges</p>
+      </div>
+      <div class="reveal bg-white border border-slate-100 rounded-2xl p-6 text-center hover:shadow-md transition-all" style="transition-delay:.07s">
+        <div class="text-3xl mb-3">🤝</div>
+        <h4 class="font-bold text-slate-800 text-sm mb-2">Community</h4>
+        <p class="text-slate-500 text-xs leading-relaxed">Organizing events and building communities around data engineering</p>
+      </div>
+      <div class="reveal bg-white border border-slate-100 rounded-2xl p-6 text-center hover:shadow-md transition-all" style="transition-delay:.14s">
+        <div class="text-3xl mb-3">✍️</div>
+        <h4 class="font-bold text-slate-800 text-sm mb-2">Writing</h4>
+        <p class="text-slate-500 text-xs leading-relaxed">Technical writing on production data challenges, and poetries on the side</p>
+      </div>
+      <div class="reveal bg-white border border-slate-100 rounded-2xl p-6 text-center hover:shadow-md transition-all" style="transition-delay:.21s">
+        <div class="text-3xl mb-3">📚</div>
+        <h4 class="font-bold text-slate-800 text-sm mb-2">Learning</h4>
+        <p class="text-slate-500 text-xs leading-relaxed">Growth is not about knowing everything. It is about staying curious enough to keep learning</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="py-24 px-6 lg:px-8" id="contact">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="reveal">
+      <div class="badge mx-auto mb-5" style="width:fit-content;">Contact</div>
+      <h2 class="text-4xl lg:text-5xl font-black text-slate-900 leading-tight mb-5">
+        Let's Build Something<br/>
+        <span class="gt">That Actually Scales</span>
+      </h2>
+      <p class="text-slate-500 text-base leading-relaxed max-w-lg mx-auto mb-10">
+        Lakehouse migration, Spark optimization, pipelines from scratch, or just a conversation about data engineering. I am here for it.
+      </p>
+
+      <div class="flex flex-wrap gap-4 justify-center mb-10">
+        <a href="mailto:kavinandhiswork@gmail.com" class="cbtn">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          kavinandhiswork@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/kavinparithi" target="_blank" class="obtn">
+          <svg width="18" height="18" fill="#0A66C2" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 text-slate-400 text-sm">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Greater Chennai Area, India
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="border-t border-slate-100 py-8 px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+    <span class="font-black text-slate-900 text-sm gt">Kavin Parithi Sivasamy</span>
+    <span class="text-slate-400 text-xs" style="font-family:'Fira Code',monospace;">Design. Develop. Debug.</span>
+    <span class="text-slate-400 text-xs">Data Engineer · Databricks Certified Professional</span>
+  </div>
+</footer>
+
+<script>
+// cursor glow
+const gl = document.getElementById('glow');
+window.addEventListener('mousemove', e => { gl.style.left = e.clientX + 'px'; gl.style.top = e.clientY + 'px'; });
+
+// reveal on scroll
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// counter animation
+function animCount(el) {
+  const t = parseInt(el.dataset.target), dur = 1600;
+  const interval = dur / t;
+  let c = 0;
+  const tm = setInterval(() => { c++; el.textContent = c; if (c >= t) clearInterval(tm); }, interval);
+}
+const co = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.counter[data-target]').forEach(animCount);
+      co.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+const heroSec = document.getElementById('home');
+if (heroSec) co.observe(heroSec);
+
+// active nav
+const secs = document.querySelectorAll('section[id]');
+const nls  = document.querySelectorAll('.nl');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (scrollY >= s.offsetTop - 140) cur = s.id; });
+  nls.forEach(a => {
+    const isActive = a.getAttribute('href') === '#' + cur;
+    a.classList.toggle('active', isActive);
+  });
+  // nav bg
+  document.getElementById('nav').style.background =
+    scrollY > 60 ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.8)';
+});
+</script>
+</body>
+</html>
