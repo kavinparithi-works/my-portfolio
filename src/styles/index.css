@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── BASE ── */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: #edeae4;
+  color: #111111;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Hide the native cursor on mouse devices; the custom dot replaces it.
+   Coarse/touch pointers keep their default behaviour. */
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [role='button'],
+  input,
+  textarea,
+  select,
+  label {
+    cursor: none;
+  }
+}
+
+@layer components {
+  /* Responsive site container: 64px desktop padding, 22px on mobile */
+  .w {
+    @apply mx-auto w-full max-w-site px-[64px] max-[680px]:px-[22px];
+  }
+
+  /* Scroll-reveal: starts hidden, .in (added by IntersectionObserver) fades up */
+  .rv {
+    @apply translate-y-[18px] opacity-0 transition-[opacity,transform] duration-[650ms] ease-out;
+  }
+  .rv.in {
+    @apply translate-y-0 opacity-100;
+  }
+  .rv.d1 {
+    transition-delay: 0.07s;
+  }
+  .rv.d2 {
+    transition-delay: 0.14s;
+  }
+  .rv.d3 {
+    transition-delay: 0.21s;
+  }
+
+  /* Headline grows +2px on hover (matches the original clamp bump) */
+  .hero-hl {
+    @apply cursor-default text-hero transition-[font-size] duration-[250ms] ease-out;
+  }
+  .hero-hl:hover {
+    @apply text-hero-hover;
+  }
+}

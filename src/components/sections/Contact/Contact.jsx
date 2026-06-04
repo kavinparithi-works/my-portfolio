@@ -1,0 +1,34 @@
+import React from 'react'
+import { Section, Reveal } from '../../layout'
+import { ContactInfo } from './ContactInfo'
+import { ContactFooter } from './ContactFooter'
+import { useRotatingWord } from '../../../hooks/useRotatingWord'
+
+/** Closing words cycled through the CTA headline, 2s apart. */
+const ROTATING_WORDS = ['PROBLEM.', 'QUESTION.', 'CHALLENGE.', 'PUZZLE.']
+
+/**
+ * Dark closing band: oversized call-to-action, contact details, and footer.
+ * The final word of the headline rotates on a 2s interval.
+ */
+export function Contact() {
+  const word = useRotatingWord(ROTATING_WORDS, 2000)
+
+  return (
+    <Section
+      id="contact"
+      data-cursor="dark"
+      className="bg-dark px-[64px] pt-[100px] max-[680px]:px-[22px]"
+    >
+      <div className="mx-auto max-w-site">
+        <Reveal as="h2" className="mb-[72px] font-barlow text-contact font-black uppercase text-white">
+          NOW. BRING ME<br />THE HARD
+          <span className="block italic text-orange"> {word}</span>
+        </Reveal>
+
+        <ContactInfo />
+        <ContactFooter />
+      </div>
+    </Section>
+  )
+}
