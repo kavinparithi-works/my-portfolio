@@ -2,9 +2,28 @@ import React from 'react'
 
 /**
  * Inline line-icons that take their colour from `currentColor`, so they can be
- * styled black by default and recoloured (e.g. brand orange) on hover via a
- * parent's text colour. `strokeWidth` kept consistent for a uniform look.
+ * styled black by default and recoloured (brand orange) on hover via a
+ * parent's text colour. Each icon also carries an `icon-<name>` class that
+ * drives a meaning-based hover animation defined in styles/index.css.
+ *
+ * mic    -> emits sound waves        shield -> deflects an arrow
+ * flask  -> wobbles like mixing      pen    -> scribbles
+ * others -> a light shake
  */
+
+/** Every icon has its own bespoke hover animation (icon-<name>). */
+const CUSTOM = new Set([
+  'mic',
+  'shield',
+  'flask',
+  'pen',
+  'bank',
+  'community',
+  'ticket',
+  'trophy',
+  'cap',
+])
+
 const paths = {
   // Selected Works
   bank: (
@@ -16,7 +35,11 @@ const paths = {
     </>
   ),
   shield: (
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+    <>
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+      {/* arrow that flies in and is deflected on hover */}
+      <path className="arrow" d="M23 12h-4M21 10l-2 2 2 2" />
+    </>
   ),
   flask: (
     <>
@@ -30,6 +53,8 @@ const paths = {
     <>
       <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z" />
       <path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3" />
+      {/* sparkle that twinkles on hover */}
+      <path className="sparkle" d="M12 7v3M10.5 8.5h3" />
     </>
   ),
   cap: (
@@ -43,6 +68,9 @@ const paths = {
     <>
       <rect x="9" y="2" width="6" height="12" rx="3" />
       <path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8" />
+      {/* sound waves that pulse out on hover */}
+      <path className="wave" d="M17 8a4 4 0 0 1 0 8" />
+      <path className="wave wave-2" d="M19.5 6a8 8 0 0 1 0 12" />
     </>
   ),
   community: (
@@ -67,6 +95,7 @@ const paths = {
 }
 
 export function Icon({ name, size = 28, className = '' }) {
+  const animClass = CUSTOM.has(name) ? `icon-${name}` : 'icon-shake'
   return (
     <svg
       width={size}
@@ -78,7 +107,7 @@ export function Icon({ name, size = 28, className = '' }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={className}
+      className={`${animClass} ${className}`}
     >
       {paths[name]}
     </svg>

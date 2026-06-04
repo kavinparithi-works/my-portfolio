@@ -17,7 +17,7 @@ export function ProjectItem({ sector, title, desc, tags, icon, status, index }) 
           {sector}
         </p>
         <div className="flex h-[52px] w-[52px] flex-shrink-0 items-center justify-center rounded-xl border border-rule bg-white text-ink transition-colors duration-[250ms] group-hover:border-white/20 group-hover:text-orange">
-          <Icon name={icon} size={24} className="emoji-shake" />
+          <Icon name={icon} size={24} />
         </div>
       </div>
 
@@ -25,7 +25,7 @@ export function ProjectItem({ sector, title, desc, tags, icon, status, index }) 
         {title}
       </h3>
 
-      <p className="mb-6 max-w-[720px] text-[14px] leading-[1.72] text-body transition-colors duration-[250ms] group-hover:text-white/70">
+      <p className="mb-6 max-w-[720px] text-justify text-[14px] leading-[1.72] text-body transition-colors duration-[250ms] group-hover:text-white/70">
         {desc}
       </p>
 

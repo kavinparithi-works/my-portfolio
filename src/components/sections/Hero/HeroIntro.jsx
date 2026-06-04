@@ -20,7 +20,7 @@ function MetaItem({ label, children }) {
 export function HeroIntro() {
   return (
     <div>
-      <Reveal as="p" delay={1} className="mb-[10px] max-w-[580px] text-[17px] leading-[1.68] text-body">
+      <Reveal as="p" delay={1} className="mb-[10px] max-w-[580px] text-justify text-[17px] leading-[1.68] text-body">
         {heroCopy.intro}
         <span className="italic text-orange">{heroCopy.introHighlight}</span>.
       </Reveal>

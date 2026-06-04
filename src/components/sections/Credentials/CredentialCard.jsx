@@ -20,7 +20,7 @@ export function CredentialCard({ label, icon, name, sub, body, href, index }) {
         {label}
       </p>
       <div className="mb-[14px] text-ink transition-colors duration-[250ms] group-hover:text-orange">
-        <Icon name={icon} size={32} className="emoji-shake" />
+        <Icon name={icon} size={32} />
       </div>
       <h4 className="mb-[6px] font-barlow text-[22px] font-extrabold uppercase leading-[1.15] tracking-[-.3px] text-ink transition-colors duration-[250ms] group-hover:text-white">
         {name}
