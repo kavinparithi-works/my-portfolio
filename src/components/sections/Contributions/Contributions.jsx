@@ -16,7 +16,7 @@ export function Contributions() {
         <Reveal as="h2" delay={1} className="mb-[56px] font-barlow text-display font-black uppercase text-ink">
           WAYS I CONTRIBUTE.
         </Reveal>
-        <div className="grid grid-cols-3 gap-4 max-[720px]:grid-cols-1">
+        <div className="group/cards grid grid-cols-3 gap-4 max-[720px]:grid-cols-1">
           {contributions.map((card, index) => (
             <ContributionCard key={card.num} index={index} {...card} />
           ))}

@@ -13,7 +13,7 @@ export function Work() {
         <Reveal as="h2" className="mb-[56px] font-barlow text-display font-black uppercase text-ink">
           SELECTED WORKS.
         </Reveal>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           {projects.map((project, index) => (
             <ProjectItem key={project.title} index={index} {...project} />
           ))}

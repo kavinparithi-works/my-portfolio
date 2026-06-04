@@ -13,8 +13,12 @@ export function ContributionCard({ num, title, body, tag, variant, index }) {
     <Reveal
       delay={index}
       className={cn(
-        'group flex flex-col rounded-[18px] p-[36px_30px] transition-transform duration-[250ms] hover:translate-y-[-4px]',
-        isFirst ? 'bg-dark text-white' : 'border border-rule bg-card'
+        'group flex flex-col rounded-[18px] border p-[36px_30px] transition-[transform,background-color,border-color] duration-[250ms] hover:translate-y-[-4px]',
+        isFirst
+          ? // dark by default -> inverts to light when ANY card in the row is hovered
+            'border-transparent bg-dark group-hover/cards:border-rule group-hover/cards:bg-card'
+          : // light by default -> inverts to dark only on its own hover
+            'border-rule bg-card hover:border-dark hover:bg-dark'
       )}
     >
       <div className="mb-8 font-barlow text-[52px] font-black leading-none text-orange">
@@ -22,16 +26,20 @@ export function ContributionCard({ num, title, body, tag, variant, index }) {
       </div>
       <div
         className={cn(
-          'mb-4 whitespace-pre-line font-barlow text-[28px] font-extrabold uppercase leading-[1.1] tracking-[-.3px]',
-          isFirst ? 'text-white' : 'text-ink'
+          'mb-4 whitespace-pre-line font-barlow text-[28px] font-extrabold uppercase leading-[1.1] tracking-[-.3px] transition-colors duration-[250ms]',
+          isFirst
+            ? 'text-white group-hover/cards:text-ink'
+            : 'text-ink group-hover:text-white'
         )}
       >
         {title}
       </div>
       <p
         className={cn(
-          'mb-7 flex-1 text-[13.5px] leading-[1.7]',
-          isFirst ? 'text-white/[.65]' : 'text-body'
+          'mb-7 flex-1 text-[13.5px] leading-[1.7] transition-colors duration-[250ms]',
+          isFirst
+            ? 'text-white/[.65] group-hover/cards:text-body'
+            : 'text-body group-hover:text-white/[.65]'
         )}
       >
         {body}
@@ -39,8 +47,10 @@ export function ContributionCard({ num, title, body, tag, variant, index }) {
       <span
         data-cursor="snap"
         className={cn(
-          'inline-flex w-fit items-center rounded-full px-[18px] py-2 text-[12px] font-bold uppercase tracking-[.8px] transition-all duration-200 hover:border-ink hover:bg-ink hover:text-white',
-          isFirst ? 'bg-white text-ink' : 'border-[1.5px] border-rule text-ink'
+          'inline-flex w-fit items-center rounded-full px-[18px] py-2 text-[12px] font-bold uppercase tracking-[.8px] transition-colors duration-[250ms]',
+          isFirst
+            ? 'bg-white text-ink group-hover/cards:border-[1.5px] group-hover/cards:border-rule group-hover/cards:bg-transparent group-hover/cards:text-ink'
+            : 'border-[1.5px] border-rule text-ink group-hover:border-white/30 group-hover:text-white'
         )}
       >
         {tag}

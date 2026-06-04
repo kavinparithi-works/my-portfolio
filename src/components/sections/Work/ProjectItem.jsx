@@ -2,38 +2,47 @@ import React from 'react'
 import { Reveal } from '../../layout'
 
 /**
- * A single "Selected Works" row: details on the left, icon + status on the right.
+ * A single "Selected Works" card: sector + icon header, title, description,
+ * tech tags, and status. Styled as a rectangular card to match the
+ * "Ways I Contribute" section.
  */
 export function ProjectItem({ sector, title, desc, tags, icon, status, index }) {
   return (
-    <Reveal className="grid grid-cols-[1fr_96px] items-start gap-8 border-b border-rule py-10 last:border-b-0 max-[600px]:grid-cols-1 max-[600px]:gap-5" delay={index}>
-      <div>
-        <p className="mb-[10px] text-[11px] font-medium uppercase tracking-[2px] text-muted">
+    <Reveal
+      delay={index}
+      className="group flex flex-col rounded-[18px] border border-rule bg-card p-[36px_30px] transition-[transform,background-color,border-color] duration-[250ms] hover:translate-y-[-4px] hover:border-dark hover:bg-dark"
+    >
+      <div className="mb-4 flex items-start justify-between gap-4">
+        <p className="text-[11px] font-medium uppercase tracking-[2px] text-orange">
           {sector}
         </p>
-        <h3 className="mb-4 font-barlow text-worktitle font-extrabold uppercase text-ink">
-          {title}
-        </h3>
-        <p className="mb-5 max-w-[640px] text-[14px] leading-[1.72] text-body">{desc}</p>
-        <div className="flex flex-wrap gap-[7px]">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-rule px-[13px] py-1 text-[11.5px] font-medium text-body"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col items-end gap-2 pt-1">
-        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-xl border border-rule bg-white text-[24px]">
+        <div className="flex h-[52px] w-[52px] flex-shrink-0 items-center justify-center rounded-xl border border-rule bg-white text-[24px] transition-colors duration-[250ms] group-hover:border-white/20">
           {icon}
         </div>
-        <span className="text-[10px] font-semibold uppercase tracking-[1.2px] text-muted">
-          {status}
-        </span>
       </div>
+
+      <h3 className="mb-4 font-barlow text-worktitle font-extrabold uppercase text-ink transition-colors duration-[250ms] group-hover:text-white">
+        {title}
+      </h3>
+
+      <p className="mb-6 max-w-[720px] text-[14px] leading-[1.72] text-body transition-colors duration-[250ms] group-hover:text-white/70">
+        {desc}
+      </p>
+
+      <div className="mb-5 flex flex-wrap gap-[7px]">
+        {tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full border border-orange/40 px-[13px] py-1 text-[11.5px] font-medium text-orange transition-colors duration-[250ms] group-hover:border-white/30 group-hover:text-white/80"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <span className="text-[10px] font-semibold uppercase tracking-[1.2px] text-muted transition-colors duration-[250ms] group-hover:text-white/50">
+        {status}
+      </span>
     </Reveal>
   )
 }
