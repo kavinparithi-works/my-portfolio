@@ -22,7 +22,7 @@ export function ContactFooter() {
         </p>
       </Reveal>
       <Reveal delay={3} className="flex flex-wrap items-center justify-end gap-4 border-t border-white/10 py-7">
-        <span className="text-[11px] tracking-[.5px] text-white/25">
+        <span className="text-[11px] tracking-[.5px] text-white/50">
           KAVIN PARITHI SIVASAMY · DATA ENGINEER
         </span>
       </Reveal>

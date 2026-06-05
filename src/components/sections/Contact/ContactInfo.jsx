@@ -1,5 +1,6 @@
 import React from 'react'
 import { Reveal } from '../../layout'
+import { Icon } from '../../icons/Icon'
 import { site, contactCopy } from '../../../data/site'
 
 /** A single labelled column within the contact info row. */
@@ -20,9 +21,31 @@ function InfoBlock({ head, children }) {
 export function ContactInfo() {
   return (
     <Reveal delay={2} className="grid grid-cols-[160px_1fr_1fr_1fr] gap-8 border-t border-white/10 py-12 max-[780px]:grid-cols-2 max-[780px]:gap-y-8 max-[480px]:grid-cols-1">
-      <p className="self-start pt-[2px] text-[11px] font-medium uppercase tracking-[2px] text-white/[.35]">
-        Say Hello
-      </p>
+      <div>
+        <p className="mb-[10px] text-[11px] font-bold uppercase tracking-[1.5px] text-white/50">
+          Say Hello
+        </p>
+        <div className="flex items-center gap-3">
+          <a
+            href={site.instagram}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className="group flex h-[38px] w-[38px] items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors duration-200 hover:border-orange hover:text-orange"
+          >
+            <Icon name="instagram" size={20} />
+          </a>
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            className="group flex h-[38px] w-[38px] items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors duration-200 hover:border-orange hover:text-orange"
+          >
+            <Icon name="linkedin" size={20} />
+          </a>
+        </div>
+      </div>
 
       <InfoBlock head="Contact me for">{contactCopy.contactFor}</InfoBlock>
       <InfoBlock head="Response time">{contactCopy.responseTime}</InfoBlock>

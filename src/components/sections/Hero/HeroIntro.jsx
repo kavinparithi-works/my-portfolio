@@ -58,7 +58,7 @@ export function HeroIntro() {
           href="#work"
           className="inline-flex items-center gap-[6px] rounded-full border-[1.5px] border-rule px-[26px] py-[13px] text-[14px] font-semibold text-body transition-all duration-200 hover:border-ink hover:text-ink"
         >
-          Selected Works ↓
+          Projects Shipped ↓
         </a>
       </Reveal>
     </div>

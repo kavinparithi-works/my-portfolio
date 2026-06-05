@@ -17,7 +17,7 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      className="bg-dark px-[64px] pt-[100px] max-[680px]:px-[22px]"
+      className="border-y-2 border-teal/50 bg-dark px-[64px] pt-[100px] max-[680px]:px-[22px]"
     >
       <div className="mx-auto max-w-site">
         <Reveal

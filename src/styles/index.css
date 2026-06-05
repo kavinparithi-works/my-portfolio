@@ -285,3 +285,14 @@ body {
 .tagline:hover .tw-dot {
   animation: tag-blink 0.5s steps(1) infinite;
 }
+
+/* Social icons under "Say Hello": a little pop on hover. */
+@keyframes social-pop {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  40% { transform: scale(1.18) rotate(-6deg); }
+  70% { transform: scale(1.08) rotate(4deg); }
+}
+.group:hover .icon-instagram,
+.group:hover .icon-linkedin {
+  animation: social-pop 0.5s ease-in-out;
+}

@@ -12,6 +12,7 @@ export default {
         orange: '#C8482A',
         rule: '#D8D4CC',
         card: '#FFFFFF',
+        teal: '#7FB7B2',
       },
       fontFamily: {
         barlow: ['"Barlow Condensed"', 'sans-serif'],

@@ -10,7 +10,10 @@ export function Credentials() {
   return (
     <Section className="py-20">
       <Container>
-        <Reveal as="h2" className="mb-12 font-barlow text-display-sm font-black uppercase text-ink">
+        <Reveal as="p" className="mb-4 flex items-center gap-2 text-[12px] font-medium uppercase tracking-[2px] text-muted">
+          Proof of the work
+        </Reveal>
+        <Reveal as="h2" delay={1} className="mb-12 font-barlow text-display-sm font-black uppercase text-ink">
           CREDENTIALS.
         </Reveal>
         <div className="grid grid-cols-2 gap-4 max-[580px]:grid-cols-1">

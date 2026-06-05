@@ -3,10 +3,10 @@
  */
 export const site = {
   name: 'Kavin Parithi Sivasamy',
-  role: 'Data Engineer',
   initial: 'K',
   email: 'kavinandhiswork@gmail.com',
   linkedin: 'https://linkedin.com/in/kavinparithi',
+  instagram: 'https://www.instagram.com/kavinnn.01/',
   location: 'Greater Chennai Area, India',
   availability: 'Senior Data Engineering roles · Databricks projects',
 }
@@ -18,7 +18,6 @@ export const heroCopy = {
   stacks: ['Databricks', 'Azure', 'Apache Spark', 'Delta Lake', 'Modern Data Engineering'],
   focus:
     'Focused on building reliable, high-performance, analytics-ready business assets.',
-  tagline: 'I Design, Develop & Debug.',
 }
 
 export const contactCopy = {

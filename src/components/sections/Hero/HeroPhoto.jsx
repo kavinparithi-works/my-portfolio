@@ -78,12 +78,15 @@ export function HeroPhoto() {
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
         onClick={handleClick}
-        className="relative h-[260px] w-[220px] flex-shrink-0 overflow-hidden rounded-2xl border border-rule"
+        className="relative h-[260px] w-[220px] flex-shrink-0 overflow-hidden border border-ink"
       >
         {/* Real photo (base layer) */}
         <img
           src={`${base}assets/images/kavin.png`}
           alt={site.name}
+          width="220"
+          height="260"
+          decoding="async"
           className="h-full w-full object-cover object-top"
         />
         {/* Cartoon, revealed through a circular clip driven imperatively */}
@@ -91,6 +94,10 @@ export function HeroPhoto() {
           ref={cartoonRef}
           src={`${base}assets/images/kavin-cartoon.png`}
           alt={`${site.name} — illustration`}
+          width="220"
+          height="260"
+          loading="lazy"
+          decoding="async"
           style={{ clipPath: 'circle(0px at 50% 50%)' }}
           className="absolute inset-0 h-full w-full object-cover object-top"
         />

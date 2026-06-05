@@ -22,6 +22,8 @@ const CUSTOM = new Set([
   'ticket',
   'trophy',
   'cap',
+  'instagram',
+  'linkedin',
 ])
 
 const paths = {
@@ -90,6 +92,20 @@ const paths = {
     <>
       <path d="M12 20h9" />
       <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" />
+    </>
+  ),
+  // Social
+  instagram: (
+    <>
+      <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  linkedin: (
+    <>
+      <rect x="2.5" y="2.5" width="19" height="19" rx="2" />
+      <path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" />
     </>
   ),
 }
