@@ -1,6 +1,7 @@
 import React from 'react'
 import { Reveal } from '../../layout'
 import { site, heroCopy } from '../../../data/site'
+import { TaglineFlourish } from './TaglineFlourish'
 
 /** A labelled meta block (e.g. "Based in" / value). */
 function MetaItem({ label, children }) {
@@ -20,9 +21,25 @@ function MetaItem({ label, children }) {
 export function HeroIntro() {
   return (
     <div>
-      <Reveal as="p" delay={1} className="mb-[10px] max-w-[580px] text-justify text-[17px] leading-[1.68] text-body">
+      <Reveal as="p" delay={1} className="mb-3 max-w-[580px] text-justify text-[14px] leading-[1.65] text-body">
         {heroCopy.intro}
-        <span className="italic text-orange">{heroCopy.introHighlight}</span>.
+      </Reveal>
+      <Reveal as="p" delay={1} className="mb-3 max-w-[580px] text-justify text-[14px] leading-[1.65] text-body">
+        Specialized in{' '}
+        {heroCopy.stacks.map((stack, i) => {
+          const isLast = i === heroCopy.stacks.length - 1
+          return (
+            <React.Fragment key={stack}>
+              {isLast && '& '}
+              <span className="font-bold text-orange">{stack}</span>
+              {!isLast && ', '}
+            </React.Fragment>
+          )
+        })}
+        . {heroCopy.focus}
+      </Reveal>
+      <Reveal delay={2}>
+        <TaglineFlourish />
       </Reveal>
 
       <Reveal delay={2} className="my-[28px] mb-9 flex flex-wrap gap-[56px]">

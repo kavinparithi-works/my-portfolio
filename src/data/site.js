@@ -13,12 +13,16 @@ export const site = {
 
 export const heroCopy = {
   intro:
-    "Most data pipelines fail not because of bad code, but because they were designed for yesterday's data volume. With 2 years of experience in Data Engineering, mainly with Azure Databricks, I architect Lakehouse platforms built for what comes next. Reliable, observable, and maintainable in production. I'm as comfortable optimising Spark workloads as I am questioning whether we're solving the ",
-  introHighlight: 'right problem',
+    "Most data pipelines fail not because of bad code, but because they were built for yesterday's data volume. I design scalable Lakehouse architectures that grow with business needs.",
+  // Stack names rendered in orange between the surrounding copy.
+  stacks: ['Databricks', 'Azure', 'Apache Spark', 'Delta Lake', 'Modern Data Engineering'],
+  focus:
+    'Focused on building reliable, high-performance, analytics-ready business assets.',
+  tagline: 'I Design, Develop & Debug.',
 }
 
 export const contactCopy = {
   contactFor:
-    'Senior Data Engineering roles · Databricks projects · Lakehouse architecture · Production pipeline challenges',
+    'Data Engineering roles · Databricks projects · Lakehouse architectures',
   responseTime: 'Every serious inquiry gets a reply. Most responses within 24 hours.',
 }
