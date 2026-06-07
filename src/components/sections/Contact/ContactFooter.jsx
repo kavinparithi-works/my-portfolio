@@ -20,8 +20,8 @@ export function ContactFooter() {
           <span className="font-bold text-orange">{second}</span>.
         </p>
       </Reveal>
-      <Reveal delay={3} className="flex flex-wrap items-center justify-end gap-4 border-t border-white/10 py-7">
-        <span className="text-[11px] tracking-[.5px] text-white/50">
+      <Reveal delay={3} className="border-t border-white/10 py-7 text-center">
+        <span className="text-[11px] tracking-[.5px] text-white/30">
           KAVIN PARITHI SIVASAMY · DATA ENGINEER
         </span>
       </Reveal>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Reveal } from '../../layout'
 import { site } from '../../../data/site'
 
@@ -27,6 +27,18 @@ export function HeroPhoto() {
 
   useEffect(() => {
     setIsTouch(window.matchMedia('(pointer: coarse)').matches)
+  }, [])
+
+  // Hide the custom cursor dot while over the photo so the blend-mode
+  // inversion doesn't show. The magnify lens (clip-path) still works fine.
+  const hideCursor = useCallback(() => {
+    const dot = document.querySelector('[data-cursor-dot]')
+    if (dot) dot.style.opacity = '0'
+  }, [])
+
+  const showCursor = useCallback(() => {
+    const dot = document.querySelector('[data-cursor-dot]')
+    if (dot) dot.style.opacity = ''
   }, [])
 
   // Imperatively paint the clip-path; avoids per-move re-renders.
@@ -75,9 +87,12 @@ export function HeroPhoto() {
     <Reveal>
       <div
         ref={wrapRef}
+        data-cursor="ignore"
+        onMouseEnter={hideCursor}
         onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
+        onMouseLeave={(e) => { showCursor(); handleLeave(e) }}
         onClick={handleClick}
+        style={{ isolation: 'isolate' }}
         className="relative h-[260px] w-[220px] flex-shrink-0 overflow-hidden border border-ink"
       >
         {/* Real photo (base layer) */}

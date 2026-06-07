@@ -50,6 +50,7 @@ export function Cursor() {
   return (
     <div
       ref={dotRef}
+      data-cursor-dot
       aria-hidden="true"
       style={{ mixBlendMode: 'difference', willChange: 'transform', ...snapStyle }}
       className={cn(
