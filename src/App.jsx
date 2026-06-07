@@ -15,8 +15,6 @@ export default function App() {
 
   return (
     <div>
-      {/* Black frame around the whole viewport. */}
-      <div className="pointer-events-none fixed inset-0 z-[200] border-[3px] border-ink" />
       <Cursor />
       <Navbar />
       <Hero />
