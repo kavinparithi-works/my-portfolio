@@ -21,8 +21,8 @@ export function ContactFooter() {
         </p>
       </Reveal>
       <Reveal delay={3} className="border-t border-white/10 py-7 text-center">
-        <span className="text-[11px] tracking-[.5px] text-white/30">
-          KAVIN PARITHI SIVASAMY · DATA ENGINEER
+        <span className="text-[12px] leading-[1.6] text-white/40" style={{ fontFamily: "'Noto Sans Tamil', sans-serif" }}>
+          யாதுமாய் அழிந்து, யார் <span className="font-semibold text-orange">நானென</span> <span className="font-semibold text-orange">மீண்டெழு</span> !
         </span>
       </Reveal>
     </>
