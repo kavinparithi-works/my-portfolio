@@ -93,7 +93,7 @@ export function Navbar() {
             href={`${import.meta.env.BASE_URL}resume.pdf`}
             download
             aria-label="Download Resume"
-            className="hidden max-[760px]:inline-flex items-center justify-center rounded-full bg-orange p-[11px] shadow-[0_0_18px_rgba(200,72,42,.55)] transition-all duration-200 hover:translate-y-[-1px] hover:bg-dark hover:shadow-[0_0_28px_rgba(200,72,42,.75)]"
+            className="hidden max-[760px]:inline-flex items-center justify-center rounded-full bg-orange p-[11px] shadow-[0_0_18px_rgba(200,72,42,.55)] transition-all duration-200 active:bg-dark active:shadow-[0_0_28px_rgba(200,72,42,.75)]"
           >
             <span className="resume-icon-cycle relative h-[16px] w-[16px]">
               <svg className="resume-arrow absolute inset-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

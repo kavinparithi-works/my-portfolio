@@ -42,7 +42,7 @@ export function HeroIntro() {
         <TaglineFlourish />
       </Reveal>
 
-      <Reveal delay={2} className="my-[28px] mb-9 flex flex-wrap gap-[56px] max-[420px]:gap-[24px]">
+      <Reveal delay={2} className="my-[28px] mb-9 flex flex-wrap gap-[56px] max-[760px]:mb-0 max-[420px]:gap-[24px]">
         <MetaItem label="Based in">{site.location}</MetaItem>
         <MetaItem label="Available for">{site.availability}</MetaItem>
       </Reveal>
