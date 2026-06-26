@@ -47,7 +47,7 @@ export function HeroIntro() {
         <MetaItem label="Available for">{site.availability}</MetaItem>
       </Reveal>
 
-      <Reveal delay={2} className="flex flex-wrap gap-3 max-[420px]:grid max-[420px]:grid-cols-1 max-[420px]:gap-3">
+      <Reveal delay={2} className="flex flex-wrap gap-3 max-[760px]:inline-flex max-[760px]:flex-col max-[760px]:items-stretch max-[760px]:gap-3">
         <a
           href="#contact"
           className="inline-flex items-center justify-center gap-[6px] rounded-full bg-dark px-[26px] py-[13px] text-[14px] font-semibold text-white transition-all duration-200 hover:translate-y-[-2px] hover:bg-[#333] hover:shadow-[0_6px_18px_rgba(0,0,0,.18)]"
