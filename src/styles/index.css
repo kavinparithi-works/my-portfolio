@@ -1,0 +1,298 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── BASE ── */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  background: #edeae4;
+  color: #111111;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Hide the native cursor on mouse devices; the custom dot replaces it.
+   Coarse/touch pointers keep their default behaviour. */
+@media (pointer: fine) {
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+}
+
+@layer components {
+  /* Responsive site container: 64px desktop padding, 22px on mobile */
+  .w {
+    @apply mx-auto w-full max-w-site px-[64px] max-[680px]:px-[22px];
+  }
+
+  /* Scroll-reveal: starts hidden, .in (added by IntersectionObserver) fades up */
+  .rv {
+    @apply translate-y-[18px] opacity-0 transition-[opacity,transform] duration-[650ms] ease-out;
+  }
+  .rv.in {
+    @apply translate-y-0 opacity-100;
+  }
+  .rv.d1 {
+    transition-delay: 0.07s;
+  }
+  .rv.d2 {
+    transition-delay: 0.14s;
+  }
+  .rv.d3 {
+    transition-delay: 0.21s;
+  }
+
+  /* Headline grows +2px on hover (matches the original clamp bump) */
+  .hero-hl {
+    @apply text-hero transition-[font-size] duration-[250ms] ease-out;
+  }
+  .hero-hl:hover {
+    @apply text-hero-hover;
+  }
+}
+
+/* Logo "K" spins once on page load and on every click. */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.logo-spin {
+  animation: logo-spin 0.6s ease-in-out;
+}
+
+/* ── Icon hover animations ──────────────────────────────────────────────
+   Each icon animates in a way that hints at its meaning on card hover.
+   The default for icons without a bespoke move is a light shake. */
+
+/* Generic shake fallback */
+@keyframes icon-shake {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-12deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-7deg); }
+  80% { transform: rotate(5deg); }
+}
+.group:hover .icon-shake,
+.rv.in .icon-shake {
+  animation: icon-shake 0.5s ease-in-out;
+}
+
+/* Bank: a confident little bounce, like a stamp of approval */
+@keyframes bank-bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-3px); }
+  60% { transform: translateY(0); }
+}
+.group:hover .icon-bank {
+  animation: bank-bounce 0.6s ease-in-out infinite;
+}
+
+/* Community: a friendly side-to-side sway (people gathering) */
+@keyframes community-sway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+.group:hover .icon-community {
+  animation: community-sway 0.9s ease-in-out infinite;
+  transform-origin: 12px 21px;
+}
+
+/* Ticket: tilts and pops like it's being torn / stamped */
+@keyframes ticket-pop {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  40% { transform: rotate(-8deg) scale(1.06); }
+  70% { transform: rotate(4deg) scale(1.02); }
+}
+.group:hover .icon-ticket {
+  animation: ticket-pop 0.7s ease-in-out infinite;
+}
+
+/* Trophy: gentle raise + a twinkling sparkle */
+@keyframes trophy-raise {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(-3deg); }
+}
+.group:hover .icon-trophy {
+  animation: trophy-raise 0.9s ease-in-out infinite;
+}
+.icon-trophy .sparkle {
+  opacity: 0;
+  transform-origin: 12px 8.5px;
+}
+@keyframes trophy-sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.group:hover .icon-trophy .sparkle {
+  animation: trophy-sparkle 0.9s ease-in-out infinite;
+}
+
+/* Cap: toss/tilt like a graduation throw */
+@keyframes cap-toss {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  40% { transform: translateY(-4px) rotate(-10deg); }
+  70% { transform: translateY(-1px) rotate(6deg); }
+}
+.group:hover .icon-cap {
+  animation: cap-toss 0.8s ease-in-out infinite;
+  transform-origin: 12px 12px;
+}
+
+/* Mic: sound waves pulse outward */
+.icon-mic .wave {
+  opacity: 0;
+  transform-origin: 12px 12px;
+}
+@keyframes mic-wave {
+  0% { opacity: 0; transform: scale(0.6); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.15); }
+}
+.group:hover .icon-mic .wave {
+  animation: mic-wave 1s ease-out infinite;
+}
+.group:hover .icon-mic .wave-2 {
+  animation-delay: 0.25s;
+}
+
+/* Shield: an arrow flies in from the right and is deflected back */
+.icon-shield .arrow {
+  opacity: 0;
+  transform-origin: center;
+}
+@keyframes shield-deflect {
+  0% { opacity: 0; transform: translateX(6px); }
+  35% { opacity: 1; transform: translateX(0); }
+  55% { opacity: 1; transform: translateX(-1px); }
+  100% { opacity: 0; transform: translateX(8px); }
+}
+.group:hover .icon-shield .arrow {
+  animation: shield-deflect 1.1s ease-in-out infinite;
+}
+/* the shield itself gives a small braced nudge */
+@keyframes shield-brace {
+  0%, 100% { transform: translateX(0); }
+  45% { transform: translateX(-1.5px); }
+}
+.group:hover .icon-shield {
+  animation: shield-brace 1.1s ease-in-out infinite;
+}
+
+/* Flask: wobble like it's being mixed/swirled */
+@keyframes flask-mix {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(10deg); }
+}
+.group:hover .icon-flask {
+  animation: flask-mix 0.7s ease-in-out infinite;
+  transform-origin: 12px 20px;
+}
+
+/* Pen: scribble — a quick back-and-forth nib motion */
+@keyframes pen-scribble {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-1px, 1px) rotate(-6deg); }
+  50% { transform: translate(1px, -1px) rotate(4deg); }
+  75% { transform: translate(-1px, 0) rotate(-3deg); }
+}
+.group:hover .icon-pen {
+  animation: pen-scribble 0.35s ease-in-out infinite;
+}
+
+/* ── "I Design, Develop & Debug." tagline surprises ─────────────────────── */
+
+.tagline span {
+  display: inline-block;
+}
+
+/* The whole line gives a tiny confident nudge on hover. */
+.tagline:hover {
+  letter-spacing: 0.2px;
+  transition: letter-spacing 0.3s ease;
+}
+
+/* DESIGN: lifts a touch, and a sparkle pops. */
+.tw-sparkle {
+  opacity: 0;
+  transform: scale(0.4);
+}
+.tagline:hover .tw-design {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease;
+}
+@keyframes tag-sparkle {
+  0% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.3) rotate(90deg); }
+  100% { opacity: 0; transform: scale(0.6) rotate(180deg); }
+}
+.tagline:hover .tw-sparkle {
+  animation: tag-sparkle 0.9s ease-in-out infinite;
+}
+
+/* DEVELOP: a fast typing-style jitter, like code being written. */
+@keyframes tag-type {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-1.5px); }
+  50% { transform: translateY(1px); }
+  75% { transform: translateY(-0.5px); }
+}
+.tagline:hover .tw-develop {
+  animation: tag-type 0.18s steps(2) infinite;
+}
+
+/* DEBUG: a bug scurries across the word, then "Debug" turns green (fixed!). */
+.tw-bug {
+  opacity: 0;
+  transform: translateX(0);
+}
+@keyframes tag-bug-run {
+  0% { opacity: 0; transform: translateX(0) rotate(0deg); }
+  10% { opacity: 1; }
+  45% { transform: translateX(46px) rotate(8deg); }
+  55% { transform: translateX(46px) rotate(-8deg); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(92px) rotate(0deg); }
+}
+.tagline:hover .tw-bug {
+  animation: tag-bug-run 1.4s ease-in-out infinite;
+}
+@keyframes tag-fixed {
+  0%, 40% { color: inherit; }
+  60%, 100% { color: #16a34a; }
+}
+.tagline:hover .tw-debug {
+  animation: tag-fixed 1.4s ease-in-out infinite;
+}
+
+/* The period winks like a blinking cursor. */
+@keyframes tag-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.tagline:hover .tw-dot {
+  animation: tag-blink 0.5s steps(1) infinite;
+}
+
+/* Social icons under "Say Hello": a little pop on hover. */
+@keyframes social-pop {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  40% { transform: scale(1.18) rotate(-6deg); }
+  70% { transform: scale(1.08) rotate(4deg); }
+}
+.group:hover .icon-instagram,
+.group:hover .icon-linkedin {
+  animation: social-pop 0.5s ease-in-out;
+}
