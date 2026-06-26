@@ -42,28 +42,28 @@ export function HeroIntro() {
         <TaglineFlourish />
       </Reveal>
 
-      <Reveal delay={2} className="my-[28px] mb-9 flex flex-wrap gap-[56px]">
+      <Reveal delay={2} className="my-[28px] mb-9 flex flex-wrap gap-[56px] max-[420px]:gap-[24px]">
         <MetaItem label="Based in">{site.location}</MetaItem>
         <MetaItem label="Available for">{site.availability}</MetaItem>
       </Reveal>
 
-      <Reveal delay={2} className="flex flex-wrap gap-3">
+      <Reveal delay={2} className="flex flex-wrap gap-3 max-[420px]:grid max-[420px]:grid-cols-1 max-[420px]:gap-3">
         <a
           href="#contact"
-          className="inline-flex items-center gap-[6px] rounded-full bg-dark px-[26px] py-[13px] text-[14px] font-semibold text-white transition-all duration-200 hover:translate-y-[-2px] hover:bg-[#333] hover:shadow-[0_6px_18px_rgba(0,0,0,.18)]"
+          className="inline-flex items-center justify-center gap-[6px] rounded-full bg-dark px-[26px] py-[13px] text-[14px] font-semibold text-white transition-all duration-200 hover:translate-y-[-2px] hover:bg-[#333] hover:shadow-[0_6px_18px_rgba(0,0,0,.18)]"
         >
           Get in touch ↗
         </a>
         <a
           href="#work"
-          className="inline-flex items-center gap-[6px] rounded-full bg-dark px-[26px] py-[13px] text-[14px] font-semibold text-white transition-all duration-200 hover:translate-y-[-2px] hover:bg-[#333] hover:shadow-[0_6px_18px_rgba(0,0,0,.18)]"
+          className="inline-flex items-center justify-center gap-[6px] rounded-full bg-dark px-[26px] py-[13px] text-[14px] font-semibold text-white transition-all duration-200 hover:translate-y-[-2px] hover:bg-[#333] hover:shadow-[0_6px_18px_rgba(0,0,0,.18)]"
         >
           Projects Shipped ↘
         </a>
         <a
           href={`${import.meta.env.BASE_URL}resume.pdf`}
           download
-          className="inline-flex items-center gap-[6px] rounded-full bg-orange px-[26px] py-[13px] text-[14px] font-bold text-ink shadow-[0_0_18px_rgba(200,72,42,.55)] transition-all duration-200 hover:translate-y-[-2px] hover:bg-dark hover:text-white hover:shadow-[0_0_28px_rgba(200,72,42,.75)]"
+          className="inline-flex items-center justify-center gap-[6px] rounded-full bg-orange px-[26px] py-[13px] text-[14px] font-bold text-ink shadow-[0_0_18px_rgba(200,72,42,.55)] transition-all duration-200 hover:translate-y-[-2px] hover:bg-dark hover:text-white hover:shadow-[0_0_28px_rgba(200,72,42,.75)]"
         >
           Resume ↓
         </a>
