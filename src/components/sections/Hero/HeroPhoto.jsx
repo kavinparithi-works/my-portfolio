@@ -93,7 +93,7 @@ export function HeroPhoto() {
         onMouseLeave={(e) => { showCursor(); handleLeave(e) }}
         onClick={handleClick}
         style={{ isolation: 'isolate' }}
-        className="relative h-[260px] w-[220px] flex-shrink-0 overflow-hidden rounded-[110px] border border-ink"
+        className="relative h-[260px] w-[220px] flex-shrink-0 overflow-hidden rounded-[110px] border border-ink max-[760px]:rounded-none"
       >
         {/* Real photo (base layer) */}
         <img

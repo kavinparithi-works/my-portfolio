@@ -90,6 +90,16 @@ export function Navbar() {
         </div>
         <div className="flex items-center gap-[8px]">
           <a
+            href={`${import.meta.env.BASE_URL}resume.pdf`}
+            download
+            aria-label="Download Resume"
+            className="hidden max-[760px]:inline-flex items-center justify-center rounded-full bg-orange p-[11px] shadow-[0_0_18px_rgba(200,72,42,.55)] transition-all duration-200 hover:translate-y-[-1px] hover:bg-dark hover:shadow-[0_0_28px_rgba(200,72,42,.75)]"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </a>
+          <a
             href={`mailto:${site.email}`}
             aria-label="Email"
             className="inline-flex items-center gap-[8px] rounded-full bg-dark px-[20px] py-[9px] text-[14px] font-bold text-white transition-[background,transform] duration-200 hover:translate-y-[-1px] hover:bg-[#333] max-[580px]:gap-0 max-[580px]:p-[11px]"
