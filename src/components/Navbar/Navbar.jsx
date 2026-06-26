@@ -95,9 +95,15 @@ export function Navbar() {
             aria-label="Download Resume"
             className="hidden max-[760px]:inline-flex items-center justify-center rounded-full bg-orange p-[11px] shadow-[0_0_18px_rgba(200,72,42,.55)] transition-all duration-200 hover:translate-y-[-1px] hover:bg-dark hover:shadow-[0_0_28px_rgba(200,72,42,.75)]"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M12 5v14M5 12l7 7 7-7" />
-            </svg>
+            <span className="resume-icon-cycle relative h-[16px] w-[16px]">
+              <svg className="resume-arrow absolute inset-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+              <svg className="resume-hand absolute inset-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M18 11V6a2 2 0 0 0-4 0v1a2 2 0 0 0-4 0v1a2 2 0 0 0-4 0v5a6 6 0 0 0 12 0v-2Z" />
+                <path d="M14 7V4a2 2 0 0 0-4 0v1" />
+              </svg>
+            </span>
           </a>
           <a
             href={`mailto:${site.email}`}
