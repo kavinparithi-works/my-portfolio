@@ -84,7 +84,7 @@ export function HeroPhoto() {
   }
 
   return (
-    <Reveal>
+    <Reveal className="max-[760px]:flex max-[760px]:justify-center">
       <div
         ref={wrapRef}
         data-cursor="ignore"

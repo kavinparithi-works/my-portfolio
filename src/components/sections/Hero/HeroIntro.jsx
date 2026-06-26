@@ -20,7 +20,7 @@ function MetaItem({ label, children }) {
  */
 export function HeroIntro() {
   return (
-    <div>
+    <div className="max-[760px]:flex max-[760px]:flex-col">
       <Reveal as="p" delay={1} className="mb-3 max-w-[580px] text-justify text-[14px] leading-[1.65] text-body">
         {heroCopy.intro}
       </Reveal>
@@ -47,25 +47,25 @@ export function HeroIntro() {
         <MetaItem label="Available for">{site.availability}</MetaItem>
       </Reveal>
 
-      <Reveal delay={2} className="flex flex-wrap gap-3 max-[760px]:inline-flex max-[760px]:flex-col max-[760px]:items-stretch max-[760px]:gap-3">
+      <Reveal delay={2} className="flex flex-wrap gap-3 max-[760px]:inline-flex max-[760px]:flex-col max-[760px]:items-stretch max-[760px]:gap-3 max-[760px]:self-center">
         <a
           href="#contact"
           className="inline-flex items-center justify-center gap-[6px] rounded-full bg-dark px-[26px] py-[13px] text-[14px] font-semibold text-white transition-all duration-200 hover:translate-y-[-2px] hover:bg-[#333] hover:shadow-[0_6px_18px_rgba(0,0,0,.18)]"
         >
-          Get in touch ↗
+          Get in touch <span className="ml-1">↗</span>
         </a>
         <a
           href="#work"
           className="inline-flex items-center justify-center gap-[6px] rounded-full bg-dark px-[26px] py-[13px] text-[14px] font-semibold text-white transition-all duration-200 hover:translate-y-[-2px] hover:bg-[#333] hover:shadow-[0_6px_18px_rgba(0,0,0,.18)]"
         >
-          Projects Shipped ↘
+          Projects Shipped <span className="ml-1">↘</span>
         </a>
         <a
           href={`${import.meta.env.BASE_URL}resume.pdf`}
           download
           className="inline-flex items-center justify-center gap-[6px] rounded-full bg-orange px-[26px] py-[13px] text-[14px] font-bold text-ink shadow-[0_0_18px_rgba(200,72,42,.55)] transition-all duration-200 hover:translate-y-[-2px] hover:bg-dark hover:text-white hover:shadow-[0_0_28px_rgba(200,72,42,.75)]"
         >
-          Resume ↓
+          Resume <span className="ml-1">↓</span>
         </a>
       </Reveal>
     </div>
