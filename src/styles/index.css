@@ -321,7 +321,13 @@ body {
 .resume-icon-cycle .resume-hand {
   opacity: 0;
   transition: opacity 0.3s ease;
-  animation: resume-bounce 1s ease-in-out infinite;
+  animation: resume-tap 0.8s ease-in-out infinite;
+}
+
+/* Tap animation: finger presses down and lifts back */
+@keyframes resume-tap {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(2px) scale(0.92); }
 }
 
 /* Keyframe-driven swap: arrow 2s → hand 1.5s → repeat */
@@ -340,5 +346,5 @@ body {
   animation: resume-bounce 1s ease-in-out infinite, arrow-show 3.5s ease infinite;
 }
 .resume-icon-cycle .resume-hand {
-  animation: resume-bounce 1s ease-in-out infinite, hand-show 3.5s ease infinite;
+  animation: resume-tap 0.8s ease-in-out infinite, hand-show 3.5s ease infinite;
 }
